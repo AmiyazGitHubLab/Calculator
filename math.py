@@ -2,6 +2,7 @@ value = list(input())
 pointer = 0
 parsed = []
 join = ""
+#Parsing start
 while True:
     workingValue = value[pointer]
     pointer+=1
@@ -24,3 +25,4 @@ while True:
         if not len(join) == 0:
             parsed.append(join)
         break
+#Parsing end
