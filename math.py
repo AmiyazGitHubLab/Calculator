@@ -26,3 +26,10 @@ while True:
             parsed.append(join)
         break
 #Parsing end
+#Lexing start
+pointer = 0
+lexTree = []
+while True:
+        break
+
+#Lexing end
