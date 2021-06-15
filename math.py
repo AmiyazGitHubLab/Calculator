@@ -57,10 +57,13 @@ while True:
     #Calculating start
     pointer = 0
     offset = 0
-    if len(parsed) == 1:
-        break
-    location = priorities[pointer]
+    if not len(parsed) == 1:
+        location = priorities[pointer]
+    if verbose:
+        print(lexTree)
     while True:
+        if len(parsed) == 1:
+            break
         prev = location
         location = priorities[pointer]
         if prev  < location:
@@ -109,4 +112,3 @@ while True:
             break
     #Calculating end
     print(lexTree[0])
-
