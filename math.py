@@ -108,5 +108,5 @@ while True:
         if pointer == len(priorities):
             break
     #Calculating end
-print(lexTree[0])
+    print(lexTree[0])
 
