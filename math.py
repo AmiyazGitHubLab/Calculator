@@ -57,6 +57,8 @@ while True:
     #Calculating start
     pointer = 0
     offset = 0
+    if len(parsed) == 1:
+        break
     location = priorities[pointer]
     while True:
         prev = location
@@ -106,5 +108,5 @@ while True:
         if pointer == len(priorities):
             break
     #Calculating end
-    print(lexTree[0])
-    input()
+print(lexTree[0])
+
