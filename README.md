@@ -1,2 +1,2 @@
 # Calcuator
-Calculator
+takes in a math expression and solves it
