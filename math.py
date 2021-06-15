@@ -28,8 +28,25 @@ while True:
 #Parsing end
 #Lexing start
 pointer = 0
-lexTree = []
+lexTree = parsed
+priorities = []
 while True:
-        break
-
+        reading = lexTree[pointer]
+        print(reading)
+        if reading == "*" or reading == "/":
+            priorities.append(pointer)
+        pointer += 1
+        if pointer == len(parsed):
+            break
+pointer = 0
+while True:
+        reading = lexTree[pointer]
+        if reading == "+" or reading == "-":
+            priorities.append(pointer)
+        pointer += 1
+        if pointer == len(parsed):
+            break
 #Lexing end
+#Calculating start
+
+#Calculating end
