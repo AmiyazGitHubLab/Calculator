@@ -73,36 +73,36 @@ while True:
             first = lexTree[location-1]
             second = lexTree[location+1]
             value = int(first) * int(second)
-            lexTree.remove(operation)
-            lexTree.remove(first)
-            lexTree.remove(second)
+            lexTree.pop(location+1)
+            lexTree.pop(location)
+            lexTree.pop(location-1)
             lexTree.insert(location-1,str(value))
             offset+=2
         if operation == "/":
             first = lexTree[location-1]
             second = lexTree[location+1]
             value = round(int(first) / int(second))
-            lexTree.remove(operation)
-            lexTree.remove(first)
-            lexTree.remove(second)
+            lexTree.pop(location+1)
+            lexTree.pop(location)
+            lexTree.pop(location-1)
             lexTree.insert(location-1,str(value))
             offset+=2
         if operation == "+":
             first = lexTree[location-1]
             second = lexTree[location+1]
-            value = int(first) + int(second)
-            lexTree.remove(operation)
-            lexTree.remove(first)
-            lexTree.remove(second)
+            value=int(first)+int(second)
+            lexTree.pop(location+1)
+            lexTree.pop(location)
+            lexTree.pop(location-1)
             lexTree.insert(location-1,str(value))
             offset+=2
         if operation == "-":
             first = lexTree[location-1]
             second = lexTree[location+1]
             value = int(first) - int(second)
-            lexTree.remove(operation)
-            lexTree.remove(first)
-            lexTree.remove(second)
+            lexTree.pop(location+1)
+            lexTree.pop(location)
+            lexTree.pop(location-1)
             lexTree.insert(location-1,str(value))
             offset+=2
         pointer += 1
