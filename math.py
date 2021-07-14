@@ -1,6 +1,8 @@
 verbose = True
 while True:
     value = list(input("> "))
+    if verbose:
+        print(value)
     pointer = 0
     parsed = []
     join = ""
