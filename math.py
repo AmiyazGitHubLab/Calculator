@@ -21,10 +21,12 @@ while True:
         if not isNumber:
             if not len(join) == 0:
                 parsed.append(join)
+                if verbose:
+                	print(parsed)
                 join = ""
             parsed.append(workingValue)
             if verbose:
-                print(parsed)
+            	print(parsed)
         else:
             join += workingValue
         if pointer == len(value):
