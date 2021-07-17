@@ -1,4 +1,9 @@
 verbose = True
+def fact(n):
+	j=1
+	for i in range(n):
+		j*=i+1
+	return j
 while True:
     value = list(input("> "))
     if verbose:
@@ -25,6 +30,10 @@ while True:
                 	print(parsed)
                 join = ""
             parsed.append(workingValue)
+            if workingValue=="!":
+            	if verbose:
+            		print(parsed)
+            	parsed.append("")
             if verbose:
             	print(parsed)
         else:
@@ -40,6 +49,14 @@ while True:
     pointer = 0
     lexTree = parsed
     priorities = []
+    while True:
+    	reading=lexTree[pointer]
+    	if reading=="^" or reading=="!":
+    		priorities.append(pointer)
+    	pointer+=1
+    	if pointer==len(parsed):
+    		break  		
+    pointer=0
     while True:
             reading = lexTree[pointer]
             if reading == "*" or reading == "/":
@@ -73,6 +90,23 @@ while True:
         if prev  < location:
             location -= offset
         operation = lexTree[location]
+        if operation == "!":
+            first = lexTree[location-1]
+            value = fact(int(first))
+            lexTree.pop(location+1)
+            lexTree.pop(location)
+            lexTree.pop(location-1)
+            lexTree.insert(location-1,str(value))
+            offset+=2
+        if operation == "^":
+            first = lexTree[location-1]
+            second = lexTree[location+1]
+            value = int(first) ** int(second)
+            lexTree.pop(location+1)
+            lexTree.pop(location)
+            lexTree.pop(location-1)
+            lexTree.insert(location-1,str(value))
+            offset+=2
         if operation == "*":
             first = lexTree[location-1]
             second = lexTree[location+1]
