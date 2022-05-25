@@ -1,7 +1,9 @@
 verbose = False
 def fact(n):
+	if n==0:
+		return 0
 	j=1
-	for i in range(n):
+	for i in range(1,n):
 		j*=i+1
 	return j
 while True:
@@ -22,7 +24,8 @@ while True:
             int(workingValue)
             isNumber = True
         except:
-            pass
+            if workingValue==".":
+                isNumber = True
         if not isNumber:
             if not len(join) == 0:
                 parsed.append(join)
@@ -100,7 +103,7 @@ while True:
         operation = lexTree[location]
         if operation == "!":
             first = lexTree[location-1]
-            value = fact(int(first))
+            value = fact(float(first))
             lexTree.pop(location+1)
             lexTree.pop(location)
             lexTree.pop(location-1)
@@ -109,7 +112,7 @@ while True:
         elif operation == "^":
             first = lexTree[location-1]
             second = lexTree[location+1]
-            value = int(first) ** int(second)
+            value = float(first) ** float(second)
             lexTree.pop(location+1)
             lexTree.pop(location)
             lexTree.pop(location-1)
@@ -118,7 +121,7 @@ while True:
         elif operation == "*":
             first = lexTree[location-1]
             second = lexTree[location+1]
-            value = int(first) * int(second)
+            value = float(first) * float(second)
             lexTree.pop(location+1)
             lexTree.pop(location)
             lexTree.pop(location-1)
@@ -127,7 +130,7 @@ while True:
         elif operation == "/":
             first = lexTree[location-1]
             second = lexTree[location+1]
-            value = round(int(first) / int(second))
+            value = (float(first) / float(second))
             lexTree.pop(location+1)
             lexTree.pop(location)
             lexTree.pop(location-1)
@@ -136,7 +139,7 @@ while True:
         elif operation == "+":
             first = lexTree[location-1]
             second = lexTree[location+1]
-            value=int(first)+int(second)
+            value=float(first)+float(second)
             lexTree.pop(location+1)
             lexTree.pop(location)
             lexTree.pop(location-1)
@@ -145,7 +148,7 @@ while True:
         elif operation == "-":
             first = lexTree[location-1]
             second = lexTree[location+1]
-            value = int(first) - int(second)
+            value = float(first) - float(second)
             lexTree.pop(location+1)
             lexTree.pop(location)
             lexTree.pop(location-1)
@@ -157,5 +160,8 @@ while True:
         if pointer == len(priorities):
             break
     #Calculating end
-    print(lexTree[0])
-
+    final=float(lexTree[0])
+    if final.is_integer():
+        print(int(final))
+    else:
+        print(final)
