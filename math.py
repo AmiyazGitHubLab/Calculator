@@ -83,7 +83,7 @@ while True:
 	total=0
 	for i in priorities:
 		total+=i
-	for i in range(total+1):
+	for i in range(max(priorities)):
 		alloffsets[i]=0
 	pointer = 0
 	offset = 0
