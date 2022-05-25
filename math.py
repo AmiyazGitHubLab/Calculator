@@ -76,6 +76,12 @@ while True:
                 break
     #Lexing end
     #Calculating start
+    alloffsets={}
+    total=0
+    for i in priorities:
+        total+=i
+    for i in range(total):
+        alloffsets[i]=0
     pointer = 0
     offset = 0
     if not len(parsed) == 1:
@@ -85,10 +91,12 @@ while True:
     while True:
         if len(parsed) == 1:
             break
-        prev = location
         location = priorities[pointer]
-        if prev  < location:
-            location -= offset
+        if verbose:
+                print(alloffsets)
+        for i in range(location):
+                if alloffsets[i]  < location:
+                    location -= alloffsets[i]
         operation = lexTree[location]
         if operation == "!":
             first = lexTree[location-1]
@@ -97,8 +105,8 @@ while True:
             lexTree.pop(location)
             lexTree.pop(location-1)
             lexTree.insert(location-1,str(value))
-            offset+=2
-        if operation == "^":
+            alloffsets[location]=alloffsets[location]+2
+        elif operation == "^":
             first = lexTree[location-1]
             second = lexTree[location+1]
             value = int(first) ** int(second)
@@ -106,8 +114,8 @@ while True:
             lexTree.pop(location)
             lexTree.pop(location-1)
             lexTree.insert(location-1,str(value))
-            offset+=2
-        if operation == "*":
+            alloffsets[location]=alloffsets[location]+2
+        elif operation == "*":
             first = lexTree[location-1]
             second = lexTree[location+1]
             value = int(first) * int(second)
@@ -115,8 +123,8 @@ while True:
             lexTree.pop(location)
             lexTree.pop(location-1)
             lexTree.insert(location-1,str(value))
-            offset+=2
-        if operation == "/":
+            alloffsets[location]=alloffsets[location]+2
+        elif operation == "/":
             first = lexTree[location-1]
             second = lexTree[location+1]
             value = round(int(first) / int(second))
@@ -124,8 +132,8 @@ while True:
             lexTree.pop(location)
             lexTree.pop(location-1)
             lexTree.insert(location-1,str(value))
-            offset+=2
-        if operation == "+":
+            alloffsets[location]=alloffsets[location]+2
+        elif operation == "+":
             first = lexTree[location-1]
             second = lexTree[location+1]
             value=int(first)+int(second)
@@ -133,8 +141,8 @@ while True:
             lexTree.pop(location)
             lexTree.pop(location-1)
             lexTree.insert(location-1,str(value))
-            offset+=2
-        if operation == "-":
+            alloffsets[location]=alloffsets[location]+2
+        elif operation == "-":
             first = lexTree[location-1]
             second = lexTree[location+1]
             value = int(first) - int(second)
@@ -142,7 +150,7 @@ while True:
             lexTree.pop(location)
             lexTree.pop(location-1)
             lexTree.insert(location-1,str(value))
-            offset+=2
+            alloffsets[location]=alloffsets[location]+2
         pointer += 1
         if verbose:
             print(lexTree)
@@ -150,3 +158,4 @@ while True:
             break
     #Calculating end
     print(lexTree[0])
+
