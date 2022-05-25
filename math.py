@@ -1,9 +1,9 @@
-verbose = False
+verbose = True
 def fact(n):
 	if n==0:
 		return 0
 	j=1
-	for i in range(1,n):
+	for i in range(1,int(n)):
 		j*=i+1
 	return j
 while True:
